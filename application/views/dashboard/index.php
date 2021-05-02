@@ -28,9 +28,9 @@
 						<p>Kartu Keluarga</p>
 					</div>
 					<div class="icon">
-						<i class="ion ion-calendar"></i>
+						<i class="fas fa-address-card"></i>
 					</div>
-					<a href="<?php echo site_url('adminku/ta') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
+					<a href="<?php echo site_url('KartuK') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->

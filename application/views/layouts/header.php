@@ -137,7 +137,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('warga') ?>" class="nav-link <?php echo $title=='Warga' ? 'active':'' ?>">
-                <i class="nav-icon fas fa-edit"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
                   Penduduk
                 </p>
@@ -146,7 +146,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('KartuK') ?>" class="nav-link <?php echo $title=='Kartu Keluarga' ? 'active':'' ?>">
-                <i class="nav-icon fas fa-calendar-alt"></i>
+                <i class="nav-icon fas fa-address-card"></i>
                 <p>
                   Kartu Keluarga
                 </p>
@@ -164,7 +164,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('sk_domisili') ?>" class="nav-link <?php echo $title=='Surat Keterangan Domisili' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
+                <i class="nav-icon far fa-envelope"></i>
                 <p>
                   SK Domisili
                 </p>
@@ -173,7 +173,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('sk_kelahiran') ?>" class="nav-link <?php echo $title=='Surat Keterangan Kelahiran' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
+                <i class="nav-icon far fa-envelope"></i>
                 <p>
                   SK Kelahiran
                 </p>
