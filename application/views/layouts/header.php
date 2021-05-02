@@ -139,7 +139,7 @@
               <a href="<?php echo site_url('warga') ?>" class="nav-link <?php echo $title=='Warga' ? 'active':'' ?>">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
-                  Warga
+                  Penduduk
                 </p>
               </a>
             </li>
@@ -166,7 +166,7 @@
               <a href="<?php echo site_url('sk_domisili') ?>" class="nav-link <?php echo $title=='Surat Keterangan Domisili' ? 'active':'' ?> ">
                 <i class="nav-icon fas fa-user-alt"></i>
                 <p>
-                  Surat Keterangan Domisili
+                  SK Domisili
                 </p>
               </a>
             </li>
@@ -175,7 +175,7 @@
               <a href="<?php echo site_url('sk_kelahiran') ?>" class="nav-link <?php echo $title=='Surat Keterangan Kelahiran' ? 'active':'' ?> ">
                 <i class="nav-icon fas fa-user-alt"></i>
                 <p>
-                  Surat Keterangan Kelahiran
+                  SK Kelahiran
                 </p>
               </a>
             </li>

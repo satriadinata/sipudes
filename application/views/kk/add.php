@@ -1,5 +1,9 @@
 <?php $this->load->view('layouts/header.php') ?>
 <!-- Main content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -33,14 +37,15 @@
                   <?php print_r($this->session->flashdata('error')); ?>
                 </div>
               <?php endif; ?>
-              <div class="form-group">
+
+              <div class="form-group" >
                 <label for="nomor_keluarga">No. KK</label>
                 <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['nomor_keluarga'] :'' ?>" id="nomor_keluarga" placeholder="Masukkan No. KK" name="nomor_keluarga" >
               </div>
 
               <div class="form-group">
                 <label for="id_kepala_keluarga">Kepala Keluarga</label>
-                <select class="form-control" name="id_kepala_keluarga">
+                <select id="id_kepala_keluarga" class="form-control" name="id_kepala_keluarga">
                   <?php foreach ($warga as $value) :?>
                     <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['id_kepala_keluarga']==$value->id_warga ? 'selected' :'' ?> value="<?php echo $value->id_warga ?>" ><?php echo $value->nama_warga; ?></option>
                   <?php endforeach ?>
@@ -98,7 +103,7 @@
               </div>
               <div style="margin-top: 20px;margin-bottom: 20px;" >
                 <a onclick="tambahAnggota()" class="btn btn-primary">Tambah Anggota</a>
-                <a onclick="kurangAnggota()" class="btn btn-danger">Kurang Anggota</a>
+                <a onclick="kurangAnggota()" class="btn btn-warning">Reset</a>
               </div>
               <!-- /.card-body -->
 
@@ -113,15 +118,22 @@
     </div><!-- /.container-fluid -->
   </section>
   <script>
+    $(document).ready(function () {
+      $('select').selectize({
+        sortField: 'text'
+      });
+    });
     id=1;
     function tambahAnggota(){
       var eleme="<select id='sel"+id+"' style='margin-bottom:10px;' name='ang"+id+"' class='form-control' ><?php foreach ($warga as $value):?><option value='<?php echo $value->id_warga ?>''><?php echo $value->nama_warga.' '.$value->nik_warga; ?></option><?php endforeach ?></select>";
       $("#target").append(eleme);
       id+=1;
+      $('select').selectize({
+        sortField: 'text'
+      });
     }
     function kurangAnggota(){
-      id--;
-      $('#sel'+id).remove();
+      $('#target').html("<label for='anggota'>Aggota Keluarga</label>");
     }
   </script>
   <!-- /.content -->

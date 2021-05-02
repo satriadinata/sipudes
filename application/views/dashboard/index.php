@@ -23,9 +23,9 @@
 				<!-- small box -->
 				<div class="small-box bg-info">
 					<div class="inner">
-						<h3>1/<span style="font-weight: normal; font-size: 20px" >a</span></h3>
+						<h3><?php echo $kk; ?></span></h3>
 
-						<p>Tahun Ajar</p>
+						<p>Kartu Keluarga</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-calendar"></i>
@@ -38,14 +38,13 @@
 				<!-- small box -->
 				<div class="small-box bg-success">
 					<div class="inner">
-						<h3><sup style="font-size: 20px">siswa</sup></h3>
-
-						<p>Pendaftar</p>
+						<h3><?php echo $total_warga; ?></h3>
+						<p>Penduduk</p>
 					</div>
 					<div class="icon">
-						<i class="ion ion-person-add"></i>
+						<i class="fas fa-user"></i>
 					</div>
-					<a href="<?php echo site_url('adminku/pendaftaran') ?>" class="small-box-footer"><i class="ion ion-person-add"></i></a>
+					<a href="<?php echo site_url('warga') ?>" class="small-box-footer"><i class="fas fa-user"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -53,14 +52,14 @@
 				<!-- small box -->
 				<div class="small-box bg-warning">
 					<div class="inner">
-						<h3></h3>
+						<h3><?php echo $rt; ?></h3>
 
-						<p>Jurusan</p>
+						<p>Akun RT</p>
 					</div>
 					<div class="icon">
-						<i class="fas fa-arrow-circle-left"></i>
+						<i class="fas fa-arrow-circle-right"></i>
 					</div>
-					<a href="<?php echo site_url('adminku/jurusan') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+					<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -68,14 +67,14 @@
 				<!-- small box -->
 				<div class="small-box bg-danger">
 					<div class="inner">
-						<h3></h3>
+						<h3><?php echo $rw; ?></h3>
 
-						<p>Users</p>
+						<p>Akun RW</p>
 					</div>
 					<div class="icon">
-						<i class="fas fa-user"></i>
+						<i class="fas fa-arrow-circle-left"></i>
 					</div>
-					<a href="<?php echo site_url('adminku/user') ?>" class="small-box-footer"><i class="fas fa-user"></i></a>
+					<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-left"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -85,54 +84,4 @@
 </section>
 <!-- /.content -->
 <script>
-	/* chart.js chart examples */
-
-// chart colors
-var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
-
-/* large line chart */
-var chLine = document.getElementById("chLine");
-var chartData = {
-	labels: [<?php foreach ($allTahun as $value) {
-		echo "'".$value->tahun."',";
-	} ?>],
-	datasets: [
-	{
-		data: [
-		<?php foreach ($allTahun as $value) {
-			$tot=0; 
-			foreach ($calon as $v) {
-				if ($v->ta==$value->tahun) {
-					$tot+=1;
-				}
-			};
-			echo "'".$tot."',";
-		} ?>
-		],
-		backgroundColor: colors[3],
-		borderColor: colors[1],
-		borderWidth: 4,
-		pointBackgroundColor: colors[1]
-	}]
-};
-
-if (chLine) {
-	new Chart(chLine, {
-		type: 'line',
-		data: chartData,
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: false
-					}
-				}]
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
-}
-</script>
 <?php $this->load->view('layouts/footer.php') ?>

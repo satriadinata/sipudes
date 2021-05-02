@@ -85,8 +85,8 @@ class KartuK extends CI_Controller {
 				$r->nomor_keluarga,
 				$r->nama_warga,
 				$r->alamat_keluarga,
-				"<button data-toggle='modal' data-target='#modal-det' class='btn btn-success' onclick='det($r->id_keluarga)'>Detail</button> "."<button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id_keluarga)'>Edit</button> ".
-				"<button id='hps".$r->id_keluarga."' class='btn btn-danger' onclick='hapus($r->id_keluarga)'>Hapus</button>",
+				"<button data-toggle='modal' data-target='#modal-det' class='btn btn-success' onclick='det($r->id_keluarga)'>Detail</button> "."<a class='btn btn-primary' href='".site_url('KartuK/edit/').$r->id_keluarga."'>Edit</a> ".
+				"<button id='hps".$r->id_keluarga."' class='btn btn-danger' onclick='hapus($r->id_keluarga)'>Hapus</button>"." <a class='btn btn-warning' href='".site_url('KartuK/cetak/').$r->id_keluarga."'>Cetak</a>",
 			);
 		}
 
@@ -99,9 +99,10 @@ class KartuK extends CI_Controller {
 		echo json_encode($output);
 		exit();
 	}
-	public function edit()
+	public function edit($id)
 	{
-		$id=$this->input->post('id');
+		// $id=$this->input->post('id');
+		$data['title']='Kartu Keluarga';
 		$data['user'] = $this->session->userdata('user_logged');
 		$data['warga'] =  $this->db->get_where('warga',['kode_desa'=>$data['user']['kode_desa']])->result();
 		$data['calon']=$this->db->get_where('kartu_keluarga',['id_keluarga'=>$id])->row_array();
@@ -161,5 +162,19 @@ class KartuK extends CI_Controller {
 	{
 		$id=$this->input->post('id');
 		$this->db->delete('kartu_keluarga', ['id_keluarga'=>$id]);
+	}
+	public function cetak($id_kk)
+	{
+		$data['calon']=$this->db->get_where('kartu_keluarga',['id_keluarga'=>$id_kk])->row_array();
+		$data['kepala']=$this->db->get_where('warga',['id_warga'=>$data['calon']['id_kepala_keluarga']])->row_array();
+		$data['anggota']=$this->Kk_model->anggota_join($data['calon']['id_keluarga']);
+		// echo "<pre>";
+		// print_r($data['anggota']);
+		// echo "</pre>";
+		// die();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('Legal', 'landscape');
+		$this->pdf->filename = "KK".$data['calon']['nomor_keluarga'].".pdf";
+		$this->pdf->load_view('kk/cetak', $data);
 	}
 }
