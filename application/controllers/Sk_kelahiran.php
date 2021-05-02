@@ -59,7 +59,7 @@ class Sk_kelahiran extends CI_Controller {
 				$r->ayah_kandung,
 				$r->ibu_kandung,
 				$r->tgl_lahir,
-				"<a href='".site_url('sk_kelahiran/cetak/').$r->id."' class='btn btn-success'>Cetak</a> "." <button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id)'>Edit</button> ".
+				"<a target='_blank' href='".site_url('sk_kelahiran/cetak/').$r->id."' class='btn btn-success'>Cetak</a> "." <button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id)'>Edit</button> ".
 				"<button id='hps".$r->id."' class='btn btn-danger' onclick='hapus($r->id)'>Hapus</button>",
 			);
 		}

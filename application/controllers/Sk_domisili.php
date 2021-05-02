@@ -61,7 +61,7 @@ class Sk_domisili extends CI_Controller {
 				$r->nama_warga,
 				$r->alamat_ktp_warga,
 				$r->created_at,
-				"<a href='".site_url('sk_domisili/cetak/').$r->id_warga."' class='btn btn-success'>Cetak</a> ".
+				"<a target='_blank' href='".site_url('sk_domisili/cetak/').$r->id_warga."' class='btn btn-success'>Cetak</a> ".
 				"<button id='hps".$r->id."' class='btn btn-danger' onclick='hapus($r->id)'>Hapus</button>",
 			);
 		}

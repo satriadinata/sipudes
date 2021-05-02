@@ -86,7 +86,7 @@ class KartuK extends CI_Controller {
 				$r->nama_warga,
 				$r->alamat_keluarga,
 				"<button data-toggle='modal' data-target='#modal-det' class='btn btn-success' onclick='det($r->id_keluarga)'>Detail</button> "."<a class='btn btn-primary' href='".site_url('KartuK/edit/').$r->id_keluarga."'>Edit</a> ".
-				"<button id='hps".$r->id_keluarga."' class='btn btn-danger' onclick='hapus($r->id_keluarga)'>Hapus</button>"." <a class='btn btn-warning' href='".site_url('KartuK/cetak/').$r->id_keluarga."'>Cetak</a>",
+				"<button id='hps".$r->id_keluarga."' class='btn btn-danger' onclick='hapus($r->id_keluarga)'>Hapus</button>"." <a class='btn btn-warning' target='_blank' href='".site_url('KartuK/cetak/').$r->id_keluarga."'>Cetak</a>",
 			);
 		}
 
