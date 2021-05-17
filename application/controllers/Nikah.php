@@ -7,7 +7,7 @@ class Nikah extends CI_Controller {
 		parent::__construct();
 		$this->load->model('SNikah_model');
 		$session = $this->session->userdata();
-		if ($this->session->userdata('user_logged')===null) {
+		if ($this->session->userdata('user_logged')['user_role']!=9) {
 			redirect(site_url('auth'));
 		};
 	}

@@ -110,12 +110,29 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="justify-content: flex-start;align-items: center;" >
           <div style= class="image">
             <img style="margin: auto;" src="<?php echo base_url('assets/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <h5 style="color: white;" class="d-block"><?php echo $user['email']; ?></h5>
+            <span style="color: white;" >
+              <?php 
+                if ($user['user_role']==9) {
+                  echo "Superadmin";
+                }elseif ($user['user_role']==5) {
+                  echo "Akun Desa ".$user['nama_desa'];
+                }elseif ($user['user_role']==4) {
+                  echo "Akun Operator ".$user['nama_desa'];
+                }elseif ($user['user_role']==3) {
+                  echo "Akun Kepala Desa".$user['nama_desa'];
+                }elseif ($user['user_role']==2) {
+                  echo "Akun RW ".$user['nama_desa'];
+                }elseif ($user['user_role']==1) {
+                  echo "Akun RT ".$user['nama_desa'];
+                }
+               ?>
+            </span style="color: white;">
           </div>
         </div>
 
@@ -124,7 +141,7 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-           <?php if ($user['user_role']==3):?>
+           <?php if ($user['user_role']==5):?>
 
             <li class="nav-item">
               <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">
@@ -161,6 +178,7 @@
                 </p>
               </a>
             </li> -->
+            <li class="nav-header">SURAT-SURAT</li>
 
             <li class="nav-item">
               <a href="<?php echo site_url('sk_domisili') ?>" class="nav-link <?php echo $title=='Surat Keterangan Domisili' ? 'active':'' ?> ">
@@ -180,11 +198,101 @@
               </a>
             </li>
 
+            <li class="nav-header">AKUN</li>
+
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('akun_kepdes') ?>" class="nav-link <?php echo $title=='Akun KEPDES' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Akun KEPDES
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('akun_operator') ?>" class="nav-link <?php echo $title=='Akun Operator' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Akun Operator
+                </p>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a href="<?php echo site_url('akun') ?>" class="nav-link <?php echo $title=='Akun RT/RW' ? 'active':'' ?> ">
                 <i class="nav-icon fas fa-user-alt"></i>
                 <p>
                   Akun RT/RW
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-header">SETTING</li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('profil') ?>" class="nav-link <?php echo $title=='Profil Desa' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Profil Desa
+                </p>
+              </a>
+            </li>
+            <?php elseif ($user['user_role']==4):?>
+              <li class="nav-item">
+              <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('warga') ?>" class="nav-link <?php echo $title=='Warga' ? 'active':'' ?>">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Penduduk
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('KartuK') ?>" class="nav-link <?php echo $title=='Kartu Keluarga' ? 'active':'' ?>">
+                <i class="nav-icon fas fa-address-card"></i>
+                <p>
+                  Kartu Keluarga
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-header">AKUN</li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('akun_kepdes') ?>" class="nav-link <?php echo $title=='Akun KEPDES' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Akun KEPDES
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('akun') ?>" class="nav-link <?php echo $title=='Akun RT/RW' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Akun RT/RW
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-header">SETTING</li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('profil') ?>" class="nav-link <?php echo $title=='Profil Desa' ? 'active':'' ?> ">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Profil Desa
                 </p>
               </a>
             </li>
@@ -209,7 +317,7 @@
                 </a>
               </li>
 
-              <?php elseif ($user['user_role']==4):?>
+              <?php elseif ($user['user_role']==9):?>
 
                 <li class="nav-item">
                   <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">

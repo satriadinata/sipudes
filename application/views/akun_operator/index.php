@@ -1,4 +1,6 @@
 <?php $this->load->view('layouts/header.php') ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <!-- Main content -->
 <div class="content-header">
   <div class="container-fluid">
@@ -22,22 +24,19 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header" style="vertical-align: middle;">
-            <h3 class="card-title" style="line-height: 40px;" >Data Kartu Keluarga</h3>
+            <h3 class="card-title" style="line-height: 40px;" >Data Operator</h3>
 
             <div class="card-tools" style="" >
-              <a href="<?php echo site_url('KartuK/add') ?>" class="btn btn-primary">Tambah data</a>
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalImport">
-                Import
-              </button>
+              <a href="<?php echo site_url('akun_operator/add') ?>" class="btn btn-primary">Tambah Data</a>
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive">
             <table id="tableDaftar" class="table table-hover text-nowrap">
               <thead>
-                <th>No. KK</th>
-                <th>Kepala Keluarga</th>
-                <th>Alamat Keluarga</th>
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>Password</th>
                 <th>Actions</th>
               </thead>
             </table>
@@ -106,7 +105,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form enctype="multipart/form-data" method="post" action="<?= site_url('kartuk/import') ;?>">
+        <form enctype="multipart/form-data" method="post" action="<?= site_url('warga/import') ;?>">
 
           <div class="form-group">
             <label>Pilih File</label>
@@ -132,7 +131,7 @@
   $(document).ready(function() {
     tabel=$('#tableDaftar').DataTable({
       "ajax": {
-        url : "<?php echo site_url("KartuK/getAll")?>",
+        url : "<?php echo site_url("akun_operator/getAll")?>",
         type : 'GET'
       }
     });
@@ -142,7 +141,7 @@
       id:id,
     }
     $.ajax({
-      url: "<?php echo site_url('KartuK/edit') ?>",
+      url: "<?php echo site_url('akun_operator/edit') ?>",
       type:'post',
       data:data,
       success: function(result){
@@ -155,7 +154,7 @@
       id:id,
     }
     $.ajax({
-      url: "<?php echo site_url('KartuK/detail') ?>",
+      url: "<?php echo site_url('warga/detail') ?>",
       type:'post',
       data:data,
       success: function(result){
@@ -170,7 +169,7 @@
         id:id,
       };
       $.ajax({
-        url: "<?php echo site_url('KartuK/hapus') ?>",
+        url: "<?php echo site_url('akun_operator/hapus') ?>",
         type:'post',
         data:data,
         beforeSend:function(){

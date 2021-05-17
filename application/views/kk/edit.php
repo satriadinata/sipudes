@@ -38,15 +38,6 @@
               </div>
 
               <div class="form-group">
-                <label for="id_kepala_keluarga">Kepala Keluarga</label>
-                <select class="form-control" name="id_kepala_keluarga">
-                  <?php foreach ($warga as $value) :?>
-                    <option <?php echo $calon['id_kepala_keluarga']==$value->id_warga ? 'selected' :'' ?> value="<?php echo $value->id_warga ?>" ><?php echo $value->nama_warga; ?></option>
-                  <?php endforeach ?>
-                </select>
-              </div>
-
-              <div class="form-group">
                 <label for="alamat_keluarga">Alamat Keluarga</label>
                 <textarea name="alamat_keluarga" value="" class="form-control" rows="3" placeholder="Masukkan alamat Keluarga"><?php echo $calon['alamat_keluarga']?></textarea>
               </div>
@@ -91,21 +82,56 @@
                 <input type="number" value="<?php echo $calon['kode_pos_keluarga'] ?>" name="kode_pos_keluarga" class="form-control" id="kode_pos_keluarga" placeholder="Masukkan Kode Pos">
               </div>
 
+              <div class="form-group">
+                <label for="nik_kepala_keluarga">Kepala Keluarga</label>
+                <select class="form-control" name="nik_kepala_keluarga">
+                  <?php foreach ($warga as $value) :?>
+                    <option <?php echo $calon['nik_kepala_keluarga']==$value->nik_warga ? 'selected' :'' ?> value="<?php echo $value->nik_warga ?>" ><?php echo $value->nik_warga.' '.$value->nama_warga; ?></option>
+                  <?php endforeach ?>
+                </select>
+              </div>
+
               <div id="target" class="form-group">
                 <?php $last=0 ?>
-                <label for="anggota">Aggota Keluarga</label>
                 <?php foreach ($anggota as $key => $value) : $last+=1 ?>
-                  <select id='sel<?php echo $key+1 ?>' style='margin-bottom:10px;' name='ang<?php echo $key+1 ?>' class='form-control' >
-                    <?php foreach ($warga as $v):?>
-                      <option <?php echo $value->id_warga==$v->id_warga ? 'selected' :'' ?> value='<?php echo $v->id_warga ?>'><?php echo $v->nama_warga.' '.$v->nik_warga; ?></option>
-                    <?php endforeach ?>
-                  </select>
+                  <?php if ($value->shdk!='KEPALA KELUARGA'): ?>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Anggota Keluarga</label>
+                        <select id='sel<?php echo $key+1 ?>' style='margin-bottom:10px;' name='ang<?php echo $key+1 ?>' class='form-control' >
+                          <?php foreach ($warga as $v):?>
+                            <option <?php echo $value->id_warga==$v->id_warga ? 'selected' :'' ?> value='<?php echo $v->id_warga ?>'><?php echo $v->nama_warga.' '.$v->nik_warga; ?></option>
+                          <?php endforeach ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Status Hubungan dalam Keluarga</label>
+                        <select name="stat<?php echo $key+1 ?>" class="form-control">
+                          <option <?php echo $value->shdk=='SUAMI' ? 'selected' :'' ?>  value="SUAMI" >SUAMI</option>
+                          <option <?php echo $value->shdk=='ISTRI' ? 'selected' :'' ?> value="ISTRI" >ISTRI</option>
+                          <option <?php echo $value->shdk=='ANAK' ? 'selected' :'' ?> value="ANAK" >ANAK</option>
+                          <option <?php echo $value->shdk=='MENANTU' ? 'selected' :'' ?> value="MENANTU" >MENANTU</option>
+                          <option <?php echo $value->shdk=='CUCU' ? 'selected' :'' ?> value="CUCU" >CUCU</option>
+                          <option <?php echo $value->shdk=='ORANGTUA' ? 'selected' :'' ?> value="ORANGTUA" >ORANGTUA</option>
+                          <option <?php echo $value->shdk=='MERTUA' ? 'selected' :'' ?> value="MERTUA" >MERTUA</option>
+                          <option <?php echo $value->shdk=='FAMILI LAIN' ? 'selected' :'' ?> value="FAMILI LAIN" >FAMILI LAIN</option>
+                          <option <?php echo $value->shdk=='PEMBANTU' ? 'selected' :'' ?> value="PEMBANTU" >PEMBANTU</option>
+                          <option <?php echo $value->shdk=='LAINNYA' ? 'selected' :'' ?> value="LAINNYA" >LAINNYA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif ?>
                 <?php endforeach ?>
-
               </div>
               <div style="margin-top: 20px;margin-bottom: 20px;" >
                 <a onclick="tambahAnggota()" class="btn btn-primary">Tambah Anggota</a>
-                <a onclick="kurangAnggota()" class="btn btn-danger">Reset Anggota</a>
+                <a onclick="location.reload()" class="btn btn-warning">Reset Anggota</a>
+                <a onclick="kurangAnggota()" class="btn btn-danger">Hapus Semua</a>
               </div>
               <!-- /.card-body -->
 
@@ -130,11 +156,12 @@
   function tambahAnggota(){
     id+=1;
     var eleme="<select id='sel"+id+"' style='margin-bottom:10px;' name='ang"+id+"' class='form-control' ><?php foreach ($warga as $value):?><option value='<?php echo $value->id_warga ?>''><?php echo $value->nama_warga.' '.$value->nik_warga; ?></option><?php endforeach ?></select>";
-    $("#target").append(eleme);
+    var eleme2="<div class='row'><div class='col-sm-6'><div class='form-group'><label>Anggota Keluarga</label><select id='sel"+id+"' style='margin-bottom:10px;' name='ang"+id+"' class='form-control' ><?php foreach ($warga as $value):?><option value='<?php echo $value->id_warga ?>''><?php echo $value->nama_warga.' '.$value->nik_warga; ?></option><?php endforeach ?></select></div></div><div class='col-sm-6'><div class='form-group'><label>Status Dalam Keluarga</label><select name='stat"+id+"' class='form-control'><option value='SUAMI' >SUAMI</option><option value='ISTRI' >ISTRI</option><option value='ANAK' >ANAK</option><option value='MENANTU' >MENANTU</option><option value='CUCU' >CUCU</option><option value='ORANGTUA' >ORANGTUA</option><option value='MERTUA' >MERTUA</option><option value='FAMILI LAIN' >FAMILI LAIN</option><option value='Pembantu' >Pembantu</option><option value='Lainnya' >Lainnya</option></select></div></div>";
+    $("#target").append(eleme2);
     $('select').selectize();
   }
   function kurangAnggota(){
-    $('#target').html("<label for='anggota'>Aggota Keluarga</label>");
+    $('#target').html("");
   }
 </script>
 <?php $this->load->view('layouts/footer.php') ?>

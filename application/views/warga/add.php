@@ -98,12 +98,12 @@
 
               <div class="form-group">
                 <label for="rt_warga">RT</label>
-                <input type="number" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rt_warga'] :'' ?>" name="rt_warga" class="form-control" id="rt_warga" placeholder="Masukkan RT (Harus 3 digit) ">
+                <input type="number" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rt_warga'] :'' ?>" name="rt_warga" class="form-control" id="rt_warga" placeholder="Masukkan RT">
               </div>
 
               <div class="form-group">
                 <label for="rw_warga">RW</label>
-                <input type="number" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw_warga'] :'' ?>" name="rw_warga" class="form-control" id="rw_warga" placeholder="Masukkan RW (Harus 3 digit)">
+                <input type="number" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw_warga'] :'' ?>" name="rw_warga" class="form-control" id="rw_warga" placeholder="Masukkan RW">
               </div>
 
               <div class="form-group">
@@ -132,7 +132,9 @@
                 <label for="status_perkawinan_warga">Status Perkawinan</label>
                 <select id="status_perkawinan_warga" class="form-control" name="status_perkawinan_warga">
                   <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Kawin' ? 'selected' :'' ?> value="Kawin" >Kawin</option>
-                  <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Tidak Kawin' ? 'selected' :'' ?> value="Tidak Kawin" >Tidak Kawin</option>
+                  <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Belum Kawin' ? 'selected' :'' ?> value="Belum Kawin" >Belum Kawin</option>
+                  <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Cerai Hidup' ? 'selected' :'' ?> value="Cerai Hidup" >Cerai Hidup</option>
+                  <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Cerai Mati' ? 'selected' :'' ?> value="Cerai Mati" >Cerai Mati</option>
                 </select>
               </div>
 
@@ -143,6 +145,18 @@
                   <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_warga']=='Kontrak' ? 'selected' :'' ?> value="Kontrak" >Kontrak</option>
                 </select>
               </div>
+
+              <div class="form-group">
+                <label for="ayah">Nama Ayah</label>
+                <input type="text" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['ayah'] :'' ?>" name="ayah" class="form-control" id="ayah" placeholder="Masukkan Nama Ayah">
+              </div>
+
+              <div class="form-group">
+                <label for="ibu">Nama Ibu</label>
+                <input type="text" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['ibu'] :'' ?>" name="ibu" class="form-control" id="ibu" placeholder="Masukkan Nama Ibu">
+              </div>
+
+
               <!-- /.card-body -->
 
               <div class="card-footer">

@@ -105,7 +105,9 @@
       <label for="status_perkawinan_warga">Status Perkawinan</label>
       <select id="status_perkawinan_warga" class="form-control" name="status_perkawinan_warga">
         <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Kawin' ? 'selected' :'' ?> value="Kawin" >Kawin</option>
-        <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Tidak Kawin' ? 'selected' :'' ?> value="Tidak Kawin" >Tidak Kawin</option>
+        <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Belum Kawin' ? 'selected' :'' ?> value="Belum Kawin" >Belum Kawin</option>
+        <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Cerai Hidup' ? 'selected' :'' ?> value="Cerai Hidup" >Belum Kawin</option>
+        <option <?php echo $this->session->flashdata('input') && $this->session->flashdata('input')['status_perkawinan_warga']=='Cerai Mati' ? 'selected' :'' ?> value="Cerai Mati" >Cerai Mati</option>
       </select>
     </div>
 
@@ -115,6 +117,16 @@
         <option <?php echo $calon['status_warga']=='Tetap' ? 'selected' :'' ?> value="Tetap" >Tetap</option>
         <option <?php echo $calon['status_warga']=='Kontrak' ? 'selected' :'' ?> value="Kontrak" >Kontrak</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ayah">Nama Ayah</label>
+      <input type="text" value="<?php echo $calon['ayah']?>" name="ayah" class="form-control" id="ayah" placeholder="Masukkan Nama Ayah">
+    </div>
+
+    <div class="form-group">
+      <label for="ibu">Nama Ibu</label>
+      <input type="text" value="<?php echo $calon['ibu']?>" name="ibu" class="form-control" id="ibu" placeholder="Masukkan Nama Ibu">
     </div>
   </div>
   <!-- /.card-body -->

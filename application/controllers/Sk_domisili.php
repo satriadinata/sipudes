@@ -18,9 +18,9 @@ class Sk_domisili extends CI_Controller {
 	{
 		$data['title']='Surat Keterangan Domisili';
 		$data['user'] = $this->session->userdata('user_logged');
-		if($this->session->userdata('user_logged')['user_role']==4){
+		if($this->session->userdata('user_logged')['user_role']==9){
 			echo "superadmin";
-		}elseif($this->session->userdata('user_logged')['user_role']==3){
+		}elseif($this->session->userdata('user_logged')['user_role']==5){
 			$this->load->view('sk_dom/index',$data);
 		}
 	}

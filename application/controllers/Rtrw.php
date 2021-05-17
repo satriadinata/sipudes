@@ -27,10 +27,11 @@ class Rtrw extends CI_Controller {
 	{
 		$this->form_validation->set_rules('nik_warga','NIK','required|min_length[16]|max_length[16]');
 		$this->form_validation->set_rules('nama_warga','Nama','required|min_length[1]|max_length[45]');
-		$this->form_validation->set_rules('rt_warga','RT','required|min_length[3]|max_length[3]');
-		$this->form_validation->set_rules('rw_warga','RW','required|min_length[3]|max_length[3]');
+		$this->form_validation->set_rules('rt_warga','RT','required');
+		$this->form_validation->set_rules('rw_warga','RW','required');
 		$data=$this->input->post();
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
+		$data['nama_desa']=$this->session->userdata('user_logged')['nama_desa'];
 		$data['created_at']=date('Y-m-d H:i:s');
 		$data['updated_at']=date('Y-m-d H:i:s');
 		
@@ -94,8 +95,8 @@ class Rtrw extends CI_Controller {
 	{
 		$this->form_validation->set_rules('nik_warga','NIK','required|min_length[16]|max_length[16]');
 		$this->form_validation->set_rules('nama_warga','Nama','required|min_length[1]|max_length[45]');
-		$this->form_validation->set_rules('rt_warga','RT','required|min_length[3]|max_length[3]');
-		$this->form_validation->set_rules('rw_warga','RW','required|min_length[3]|max_length[3]');
+		$this->form_validation->set_rules('rt_warga','RT','required');
+		$this->form_validation->set_rules('rw_warga','RW','required');
 		$data=$this->input->post();
 		if ($this->form_validation->run()) {
 			$this->db->where('id_warga', $data['id_warga']);

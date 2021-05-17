@@ -1,4 +1,7 @@
 <?php $this->load->view('layouts/header.php') ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <!-- Main content -->
 <div class="content-header">
   <div class="container-fluid">
@@ -36,7 +39,7 @@
 
               <div class="form-group">
                 <label for="id_warga">NIK - Nama Warga</label>
-                <select class="form-control" name="id_warga">
+                <select id="id_warga" class="form-control" name="id_warga">
                   <?php foreach ($warga as $value):?>
                     <option onclick="dt(<?php echo $value->id_warga; ?>)" value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
                   <?php endforeach ?>
@@ -53,14 +56,9 @@
               </div>
 
               <div id="ch">
-                
+                <div class='form-group'><label for='rw'>RW</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw'] :'' ?>' id='rw' placeholder='Masukkan RT/RW Berapa' name='rw' ></div>
               </div>
               
-
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['email'] :'' ?>" id="email" placeholder="Masukkan Email" name="email" >
-              </div>
 
               <div class="form-group">
                 <label for="password">Password</label>
@@ -80,12 +78,19 @@
     </div><!-- /.container-fluid -->
   </section>
   <script>
+    $(document).ready(function () {
+    $('#id_warga').selectize({
+      sortField: 'text'
+    });
+  });
+  </script>
+  <script>
     function rw(){
-      var ehe="<div class='form-group'><label for='rw'>RW</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw'] :'' ?>' id='rw' placeholder='Masukkan RT/RW Berapa (3 digit)' name='rw' ></div>";
+      var ehe="<div class='form-group'><label for='rw'>RW</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw'] :'' ?>' id='rw' placeholder='Masukkan RT/RW Berapa' name='rw' ></div>";
       $('#ch').html(ehe);
     }
     function rt(){
-      var ehe="<div class='form-group'><label for='rw'>RW</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw'] :'' ?>' id='rw' placeholder='Masukkan RW Berapa (3 digit)' name='rw' ></div>"+"<div class='form-group'><label for='rt'>RT</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rt'] :'' ?>' id='rt' placeholder='Masukkan RT Berapa (3 digit)' name='rt' ></div>";
+      var ehe="<div class='form-group'><label for='rw'>RW</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rw'] :'' ?>' id='rw' placeholder='Masukkan RW Berapa' name='rw' ></div>"+"<div class='form-group'><label for='rt'>RT</label><input type='text' class='form-control' value='<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['rt'] :'' ?>' id='rt' placeholder='Masukkan RT Berapa (3 digit)' name='rt' ></div>";
       $('#ch').html(ehe);
     }
     function dt(id){

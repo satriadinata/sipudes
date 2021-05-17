@@ -11,7 +11,7 @@ class User_model extends CI_Model
         $email=$this->input->post('email');
         $user=$this->db->get_where($this->_table, ['email'=>$email,'kode_desa'=>$kode_desa])->row_array();
 
-        if ($user && $user['user_role']==4) {
+        if ($user && $user['user_role']==9) {
             if (password_verify($password, $user['password'])) {
                 $data=[
                     'id_user'=>$user['id_user'],
@@ -26,7 +26,7 @@ class User_model extends CI_Model
                 $this->session->set_flashdata('errP','Wrong Password or Blocked');
                 redirect(site_url('auth')); 
             }
-        }elseif($user && $user['user_role']==3 && $user['password']==$password){
+        }elseif($user && ($user['user_role']==5 || $user['user_role']==4 || $user['user_role']==3) && $user['password']==$password){
             $data=[
                 'id_user'=>$user['id_user'],
                 'email'=>$user['email'],

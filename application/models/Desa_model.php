@@ -6,7 +6,8 @@ class Desa_model extends CI_Model
     {
        $this->db->select('*');
        $this->db->from('users');
-       $this->db->where('users.user_role',3);
+       $this->db->join('profil_desa','profil_desa.kode_desa=users.kode_desa');
+       $this->db->where('users.user_role',5);
        $query=$this->db->get();
        return $query;
    }

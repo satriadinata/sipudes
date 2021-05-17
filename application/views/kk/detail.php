@@ -59,7 +59,7 @@
       <h5>
         <?php foreach ($warga as $value) :?>
           <?php  
-          if ($value->id_warga==$calon['id_kepala_keluarga']){
+          if ($value->nik_warga==$calon['nik_kepala_keluarga']){
             echo $value->nama_warga;
           }
           ?>
@@ -69,14 +69,22 @@
 
     <div id="target" class="form-group">
       <label for="anggota">Aggota Keluarga</label>
-      <?php foreach ($anggota as $key => $value):?>
-        <h5><?php foreach ($warga as $v) {
-          if($value->id_warga==$v->id_warga){
-            echo $v->nama_warga;
-          }
-        } ?></h5>
-      <?php endforeach ?>
+      <table>
+        <tbody class="table" >
+          <?php foreach ($anggota as $key => $value):?>
+            <tr>
+              <?php foreach ($warga as $v) {
+                if($value->id_warga==$v->id_warga){?>
+                  <td><?php echo $v->nama_warga; ?></td>
+                  <td><?php echo $value->shdk; ?></td>
+                  <?php
+                }?>
+              <?php } ?>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+
 </div>

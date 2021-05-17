@@ -43,6 +43,21 @@
                 <label for="nama_desa">Nama Desa</label>
                 <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['nama_desa'] :'' ?>" id="nama_desa" placeholder="Masukkan Nama Desa" name="nama_desa" >
               </div>
+
+              <div class="form-group">
+                <label for="kec_desa">Kecamatan Desa</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['kec_desa'] :'' ?>" id="kec_desa" placeholder="Masukkan Kecamatan Desa" name="kec_desa" >
+              </div>
+
+              <div class="form-group">
+                <label for="kab_desa">Kabupaten Desa</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['kab_desa'] :'' ?>" id="kab_desa" placeholder="Masukkan Kabupaten Desa" name="kab_desa" >
+              </div>
+
+              <div class="form-group">
+                <label for="prov_desa">Provinsi Desa</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['prov_desa'] :'' ?>" id="prov_desa" placeholder="Masukkan Provinsi Desa" name="prov_desa" >
+              </div>
               
 
               <div class="form-group">

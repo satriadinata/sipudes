@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Akun extends CI_Controller {
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
+class Akun_kepdes extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -13,33 +16,34 @@ class Akun extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['title']='Akun RT/RW';
+		$data['title']='Akun KEPDES';
 		$data['user'] = $this->session->userdata('user_logged');
 		if($this->session->userdata('user_logged')['user_role']==9){
 			echo "superadmin";
 		}elseif($this->session->userdata('user_logged')['user_role']==5 || $this->session->userdata('user_logged')['user_role']==4){
-			$this->load->view('akun/index',$data);
+			$this->load->view('akun_kepdes/index',$data);
 		}
 	}
 	public function add()
 	{
-		$data['title']='Akun RT/RW';
+		$data['title']='Akun KEPDES';
 		$data['user'] = $this->session->userdata('user_logged');
-		$data['warga']= $this->db->get_where('warga',['kode_desa'=>$data['user']['kode_desa']])->result();
-		$this->load->view('akun/add',$data);
+		$data['warga'] = $this->db->get_where('warga',['kode_desa'=>$data['user']['kode_desa']])->result();
+		$this->load->view('akun_kepdes/add',$data);
 	}
 	public function post()
 	{
 		$data=$this->input->post();
-		$data['email']=$this->db->get_where('warga',['id_warga'=>$data['id_warga']])->row_array()['nik_warga'];
+		$data['id_warga']=$this->db->get_where('warga',['nik_warga'=>$data['email']])->row_array()['id_warga'];
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
+		$data['nama_desa']=$this->session->userdata('user_logged')['nama_desa'];
+		$data['user_role']=3;
 		$data['created_at']=date('Y-m-d H:i:s');
 		$data['updated_at']=date('Y-m-d H:i:s');
-		
+
 		$this->db->insert('users', $data);
 		$this->session->set_flashdata('message', 'Data berhasil di input');
-		redirect(site_url('akun'));
-		
+		redirect(site_url('akun_kepdes'));
 	}
 	public function getAll()
 	{
@@ -50,22 +54,16 @@ class Akun extends CI_Controller {
 		$length = intval($this->input->get("length"));
 
 
-		$wargas = $this->Akun_model->get_data($kode_desa);
+		$wargas = $this->Akun_model->get_kepdes($kode_desa);
 
 		$data = array();
 
 		foreach($wargas->result() as $r) {
-			if ($r->user_role==2){
-				$role='RW';
-			}elseif($r->user_role==1){
-				$role='RT';
-			}
+
 			$data[] = array(
 				$r->email,
+				$r->nama_warga,
 				$r->password,
-				$role,
-				$r->rt,
-				$r->rw,
 				"<button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id_user)'>Edit</button> ".
 				"<button id='hps".$r->id_user."' class='btn btn-danger' onclick='hapus($r->id_user)'>Hapus</button>",
 			);
@@ -86,24 +84,18 @@ class Akun extends CI_Controller {
 		$kode_desa = $this->session->userdata('user_logged')['kode_desa'];
 		$data['calon']=$this->db->get_where('users',['id_user'=>$id])->row_array();
 		$data['warga']=$this->db->get_where('warga',['kode_desa'=>$kode_desa])->result();
-		$this->load->view('akun/edit', $data);
+		$this->load->view('akun_kepdes/edit', $data);
 	}
 	public function update()
 	{
 		$data=$this->input->post();
-		$data['email']=$this->db->get_where('warga',['id_warga'=>$data['id_warga']])->row_array()['nik_warga'];
+		$data['id_warga']=$this->db->get_where('warga',['nik_warga'=>$data['email']])->row_array()['id_warga'];
 		$data['updated_at']=date('Y-m-d H:i:s');
 
 		$this->db->where('id_user', $data['id_user']);
 		$this->db->update('users', $data);
 		$this->session->set_flashdata('message', 'Data berhasil di update');
-		redirect(site_url('akun'));
-	}
-	public function detail()
-	{
-		$id=$this->input->post('id');
-		$data['calon']=$this->db->get_where('warga',['id_warga'=>$id])->row_array();
-		$this->load->view('warga/detail', $data);
+		redirect(site_url('akun_kepdes'));
 	}
 	public function hapus()
 	{

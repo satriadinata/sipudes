@@ -18,70 +18,123 @@
 <section class="content">
 	<div class="container-fluid">
 		<!-- Small boxes (Stat box) -->
-		<div class="row">
-			<div class="col-lg-3 col-6">
-				<!-- small box -->
-				<div class="small-box bg-info">
-					<div class="inner">
-						<h3><?php echo $kk; ?></span></h3>
+		<?php if($user['user_role']<=5 && $user['user_role']>=3): ?>
+			<div class="row">
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3><?php echo $kk; ?></span></h3>
 
-						<p>Kartu Keluarga</p>
+							<p>Kartu Keluarga</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-address-card"></i>
+						</div>
+						<a href="<?php echo site_url('KartuK') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
 					</div>
-					<div class="icon">
-						<i class="fas fa-address-card"></i>
-					</div>
-					<a href="<?php echo site_url('KartuK') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
 				</div>
-			</div>
-			<!-- ./col -->
-			<div class="col-lg-3 col-6">
-				<!-- small box -->
-				<div class="small-box bg-success">
-					<div class="inner">
-						<h3><?php echo $total_warga; ?></h3>
-						<p>Penduduk</p>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3><?php echo $total_warga; ?></h3>
+							<p>Penduduk</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-user"></i>
+						</div>
+						<a href="<?php echo site_url('warga') ?>" class="small-box-footer"><i class="fas fa-user"></i></a>
 					</div>
-					<div class="icon">
-						<i class="fas fa-user"></i>
-					</div>
-					<a href="<?php echo site_url('warga') ?>" class="small-box-footer"><i class="fas fa-user"></i></a>
 				</div>
-			</div>
-			<!-- ./col -->
-			<div class="col-lg-3 col-6">
-				<!-- small box -->
-				<div class="small-box bg-warning">
-					<div class="inner">
-						<h3><?php echo $rt; ?></h3>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3><?php echo $rt; ?></h3>
 
-						<p>Akun RT</p>
+							<p>Akun RT</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-arrow-circle-right"></i>
+						</div>
+						<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
 					</div>
-					<div class="icon">
-						<i class="fas fa-arrow-circle-right"></i>
-					</div>
-					<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
 				</div>
-			</div>
-			<!-- ./col -->
-			<div class="col-lg-3 col-6">
-				<!-- small box -->
-				<div class="small-box bg-danger">
-					<div class="inner">
-						<h3><?php echo $rw; ?></h3>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-danger">
+						<div class="inner">
+							<h3><?php echo $rw; ?></h3>
 
-						<p>Akun RW</p>
+							<p>Akun RW</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-arrow-circle-left"></i>
+						</div>
+						<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-left"></i></a>
 					</div>
-					<div class="icon">
-						<i class="fas fa-arrow-circle-left"></i>
-					</div>
-					<a href="<?php echo site_url('akun') ?>" class="small-box-footer"><i class="fas fa-arrow-circle-left"></i></a>
 				</div>
+				<!-- ./col -->
 			</div>
-			<!-- ./col -->
-		</div>
-		<!-- /.row (main row) -->
-	</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-<script>
-<?php $this->load->view('layouts/footer.php') ?>
+			<?php elseif ($user['user_role']<=2) :?>
+				<div class="row">
+					<div class="col-lg-6 col-15">
+						<!-- small box -->
+						<div class="small-box bg-info">
+							<div class="inner">
+								<h3><?php echo $jmlh_kk; ?></span></h3>
+
+								<p>Kartu Keluarga</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-address-card"></i>
+							</div>
+							<a href="<?php echo site_url('KartuK') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<div class="col-lg-6 col-15">
+						<!-- small box -->
+						<div class="small-box bg-success">
+							<div class="inner">
+								<h3><?php echo $jmlh_warga; ?></h3>
+								<p>Penduduk</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-user"></i>
+							</div>
+							<a href="<?php echo site_url('warga') ?>" class="small-box-footer"><i class="fas fa-user"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<!-- ./col -->
+					<!-- ./col -->
+				</div>
+			<?php elseif ($user['user_role']==9):?>
+				<div class="row">
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3><?php echo $jmlh_desa; ?></span></h3>
+
+							<p>Jumlah Desa</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-address-card"></i>
+						</div>
+						<a href="<?php echo site_url('KartuK') ?>" class="small-box-footer"><i class="fas fa-calendar"></i></a>
+					</div>
+				</div>
+				<!-- ./col -->
+			</div>
+			<?php endif ?>
+			<!-- /.row (main row) -->
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+	<?php $this->load->view('layouts/footer.php') ?>

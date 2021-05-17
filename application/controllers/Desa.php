@@ -7,7 +7,7 @@ class Desa extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Desa_model');
 		$session = $this->session->userdata();
-		if ($this->session->userdata('user_logged')['user_role']!=4) {
+		if ($this->session->userdata('user_logged')['user_role']!=9) {
 			redirect(site_url('auth'));
 		};
 	}
@@ -25,14 +25,30 @@ class Desa extends CI_Controller {
 	}
 	public function post()
 	{
-		$this->form_validation->set_rules('kode_desa','Kode Desa','required|max_length[11]|is_unique[users.kode_desa]');
+		$this->form_validation->set_rules('kode_desa','Kode Desa','required|is_unique[users.kode_desa]');
 		$data=$this->input->post();
 		$data['created_at']=date('Y-m-d H:i:s');
 		$data['updated_at']=date('Y-m-d H:i:s');
-		$data['user_role']=3;
+		$data['user_role']=5;
 		
 		if ($this->form_validation->run()) {
-			$this->db->insert('users', $data);
+			$this->db->insert('profil_desa', [
+				'nama_desa'=>$data['nama_desa'],
+				'kode_desa'=>$data['kode_desa'],
+				'kec_desa'=>$data['kec_desa'],
+				'kab_desa'=>$data['kab_desa'],
+				'prov_desa'=>$data['prov_desa'],
+
+			]);
+			$insert_id=$this->db->insert_id();
+			$this->db->insert('users', [
+				'nama_desa'=>$data['nama_desa'],
+				'kode_desa'=>$data['kode_desa'],
+				'email'=>$data['email'],
+				'password'=>$data['password'],
+				'user_role'=>5,
+
+			]);
 			$this->session->set_flashdata('message', 'Data berhasil di input');
 			redirect(site_url('desa'));
 		}else{

@@ -15,9 +15,9 @@ class Sk_kelahiran extends CI_Controller {
 	{
 		$data['title']='Surat Keterangan Kelahiran';
 		$data['user'] = $this->session->userdata('user_logged');
-		if($this->session->userdata('user_logged')['user_role']==4){
+		if($this->session->userdata('user_logged')['user_role']==9){
 			echo "superadmin";
-		}elseif($this->session->userdata('user_logged')['user_role']==3){
+		}elseif($this->session->userdata('user_logged')['user_role']==5){
 			$this->load->view('sk_lahir/index',$data);
 		}
 	}

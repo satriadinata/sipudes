@@ -1,4 +1,7 @@
 <?php $this->load->view('layouts/header.php') ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
 <!-- Main content -->
 <div class="content-header">
   <div class="container-fluid">
@@ -35,7 +38,7 @@
           <div class="card-body table-responsive">
             <table id="tableDaftar" class="table table-hover text-nowrap">
               <thead>
-                <th>Email</th>
+                <th>NIK</th>
                 <th>Password</th>
                 <th>Peran</th>
                 <th>RT</th>
@@ -150,6 +153,9 @@
       success: function(result){
         $("#modalDataEdit").html(result);
       }
+    });
+    $('#id_warga').selectize({
+      sortField: 'text'
     });
   };
   function det(id){
