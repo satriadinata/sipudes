@@ -20,6 +20,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->db->empty_table('kartu_keluarga');
+		$this->db->empty_table('warga');
+		$this->db->empty_table('warga_has_kartu_keluarga');
+		$this->db->empty_table('warga');
+		// echo "ehe";
 	}
 }

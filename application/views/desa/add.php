@@ -58,6 +58,11 @@
                 <label for="prov_desa">Provinsi Desa</label>
                 <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['prov_desa'] :'' ?>" id="prov_desa" placeholder="Masukkan Provinsi Desa" name="prov_desa" >
               </div>
+
+              <div class="form-group">
+                <label for="kode_pos">Provinsi Desa</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['kode_pos'] :'' ?>" id="kode_pos" placeholder="Masukkan Provinsi Desa" name="kode_pos" >
+              </div>
               
 
               <div class="form-group">

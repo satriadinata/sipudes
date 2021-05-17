@@ -33,6 +33,7 @@ class Akun extends CI_Controller {
 		$data=$this->input->post();
 		$data['email']=$this->db->get_where('warga',['id_warga'=>$data['id_warga']])->row_array()['nik_warga'];
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
+		$data['nama_desa']=$this->session->userdata('user_logged')['nama_desa'];
 		$data['created_at']=date('Y-m-d H:i:s');
 		$data['updated_at']=date('Y-m-d H:i:s');
 		

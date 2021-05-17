@@ -278,10 +278,10 @@ class KartuK extends CI_Controller {
 	}
 	public function sync()
 	{
-		// $this->db->empty_table('kartu_keluarga');
-		// $this->db->empty_table('warga_has_kartu_keluarga');
-		// $this->db->empty_table('warga');
-		// die();
+		$this->db->empty_table('kartu_keluarga');
+		$this->db->empty_table('warga_has_kartu_keluarga');
+		$this->db->empty_table('warga');
+		die();
 		$user = $this->session->userdata('user_logged');
 		$kk=$this->db->get_where('kartu_keluarga',['kode_desa'=>$user['kode_desa']])->result();
 		$data=[];

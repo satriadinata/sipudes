@@ -38,6 +38,7 @@ class Desa extends CI_Controller {
 				'kec_desa'=>$data['kec_desa'],
 				'kab_desa'=>$data['kab_desa'],
 				'prov_desa'=>$data['prov_desa'],
+				'kode_pos'=>$data['kode_pos'],
 
 			]);
 			$insert_id=$this->db->insert_id();
