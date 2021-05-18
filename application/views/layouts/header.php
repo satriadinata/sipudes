@@ -102,9 +102,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a style="text-align: center;" href="<?php echo site_url('home') ?>" class="brand-link">
         <!-- <img src="<?php echo base_url('assets/logo.jpg') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <h4 class="brand-text font-weight-light">SIPUDES</h4>
+        <h3 class="brand-text font-weight-light">SIPUDES</h3>
       </a>
 
       <!-- Sidebar -->
@@ -232,7 +232,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('profil') ?>" class="nav-link <?php echo $title=='Profil Desa' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
+                <i class="nav-icon fas fa-user-cog"></i>
                 <p>
                   Profil Desa
                 </p>
@@ -290,7 +290,7 @@
 
             <li class="nav-item">
               <a href="<?php echo site_url('profil') ?>" class="nav-link <?php echo $title=='Profil Desa' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
+                <i class="nav-icon fas fa-user-cog"></i>
                 <p>
                   Profil Desa
                 </p>
