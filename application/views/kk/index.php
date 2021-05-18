@@ -106,7 +106,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form enctype="multipart/form-data" method="post" action="<?= site_url('kartuk/import') ;?>">
+        <form enctype="multipart/form-data" method="post" action="<?= site_url('KartuK/import') ;?>">
 
           <div class="form-group">
             <label>Pilih File</label>
