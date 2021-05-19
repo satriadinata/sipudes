@@ -62,7 +62,7 @@
 
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['password'] :'' ?>" id="password" placeholder="Masukkan password" name="password" >
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['password'] :'' ?>" id="password" placeholder="Nilai default adalah tanggal lahir (ddmmyyyy)" name="password" >
               </div>
 
               <!-- /.card-body -->

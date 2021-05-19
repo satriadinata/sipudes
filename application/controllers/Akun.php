@@ -34,6 +34,11 @@ class Akun extends CI_Controller {
 		$data['email']=$this->db->get_where('warga',['id_warga'=>$data['id_warga']])->row_array()['nik_warga'];
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
 		$data['nama_desa']=$this->session->userdata('user_logged')['nama_desa'];
+		if ( empty($data['password'])) {
+			$tgl=$this->db->get_where('warga',['nik_warga'=>$data['email']])->row_array()['tanggal_lahir_warga'];
+			$tgl_explode=explode('-', $tgl);
+			$data['password']=$tgl_explode[2].$tgl_explode[1].$tgl_explode[0];
+		}
 		$data['created_at']=date('Y-m-d H:i:s');
 		$data['updated_at']=date('Y-m-d H:i:s');
 		
