@@ -219,7 +219,7 @@ class KartuK extends CI_Controller {
 					'kode_desa'=> $kode_desa,
 					'nomor_keluarga'=> $sheetData[$i]['18'],
 					'nik_kepala_keluarga'=>$sheetData[$i]['0'],
-					'alamat_keluarga'=>'',
+					'alamat_keluarga'=>$sheetData[$i]['20'],
 					'desa_kelurahan_keluarga'=>$desa,
 					'kecamatan_keluarga'=>$kec,
 					'kabupaten_kota_keluarga'=>$kab,
