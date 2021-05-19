@@ -301,4 +301,18 @@ class KartuK extends CI_Controller {
 		// print_r($data);
 		// echo "</pre>";
 	}
+	public function sync_kodepos()
+	{
+		$user = $this->session->userdata('user_logged');
+		$kode_pos = $this->db->get_where('profil_desa',['kode_desa'=>$user['kode_desa']])->row_array()['kode_pos'];
+		$data=$this->db->get_where('kartu_keluarga',['kode_desa'=>$user['kode_desa']])->result();
+		$update=[];
+		foreach ($data as $key => $value) {
+			array_push($update, [
+				'id_keluarga'=>$value->id_keluarga,
+				'kode_pos_keluarga'=>$kode_pos,
+			]);
+		}
+		$this->db->update_batch('kartu_keluarga',$update, 'id_keluarga'); 
+	}
 }

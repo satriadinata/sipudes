@@ -24,6 +24,14 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
+
+          <div class="card-header" style="vertical-align: middle;">
+            <h3 class="card-title" style="line-height: 40px;" >Data Profil Desa</h3>
+
+            <div class="card-tools" style="" >
+              <a href="<?php echo site_url('KartuK/sync_kodepos') ?>" class="btn btn-primary">Sync Kode Pos ke KK</a>
+            </div>
+          </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive">
             <table id="tableDaftar" class="table table-hover text-nowrap">
