@@ -170,6 +170,7 @@ class Warga extends CI_Controller {
 					'ibu'=>$sheetData[$i]['16'],
 					'ayah'=>$sheetData[$i]['17'],
 					'no_kk_warga'=>$sheetData[$i]['18'],
+					'alamat_warga'=>$sheetData[$i]['20'],
 					'desa_kelurahan_warga'=>$sheetData[$i]['20'],
 					'kecamatan_warga'=>$kec,
 					'kabupaten_kota_warga'=>$kab,
