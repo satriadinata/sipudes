@@ -76,7 +76,7 @@ class Desa extends CI_Controller {
 				$r->nama_desa,
 				$r->email,
 				$r->password,
-				"<button data-toggle='modal' data-target='#modal-det' class='btn btn-success' onclick='det($r->id_user)'>Detail</button> "."<button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id_user)'>Edit</button> ".
+				"<button class='btn btn-primary' data-toggle='modal' data-target='#modal-edit' onclick='edit($r->id_user)'>Edit</button> ".
 				"<button id='hps".$r->id_user."' class='btn btn-danger' onclick='hapus($r->id_user)'>Hapus</button>",
 			);
 		}

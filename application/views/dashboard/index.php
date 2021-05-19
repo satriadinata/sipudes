@@ -80,6 +80,54 @@
 				</div>
 				<!-- ./col -->
 			</div>
+
+			<div class="row">
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3><?php echo $ttl_laki; ?></span></h3>
+
+							<p>Laki - laki</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-mars"></i>
+						</div>
+						<a href="<?php echo site_url('home') ?>" class="small-box-footer"><i class="fas fa-mars"></i></a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3><?php echo $ttl_pere; ?></h3>
+							<p>Perempuan</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-venus"></i>
+						</div>
+						<a href="<?php echo site_url('warga') ?>" class="small-box-footer"><i class="fas fa-venus"></i></a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3><?php echo $dewasa; ?></h3>
+
+							<p>Diatas 17 Tahun</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-child"></i>
+						</div>
+						<a href="<?php echo site_url('home') ?>" class="small-box-footer"><i class="fas fa-child"></i></a>
+					</div>
+				</div>
+				<!-- ./col -->
+			</div>
+
 			<?php elseif ($user['user_role']<=2) :?>
 				<div class="row">
 					<div class="col-lg-6 col-15">

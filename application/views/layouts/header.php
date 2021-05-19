@@ -143,6 +143,9 @@
 
            <?php if ($user['user_role']==5):?>
 
+            <li class="nav-header">PENDUDUK</li>
+
+
             <li class="nav-item">
               <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -239,6 +242,8 @@
               </a>
             </li>
             <?php elseif ($user['user_role']==4):?>
+
+            <li class="nav-header">PENDUDUK</li>
               <li class="nav-item">
               <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -266,26 +271,6 @@
               </a>
             </li>
 
-            <li class="nav-header">AKUN</li>
-
-            <li class="nav-item">
-              <a href="<?php echo site_url('akun_kepdes') ?>" class="nav-link <?php echo $title=='Akun KEPDES' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
-                <p>
-                  Akun KEPDES
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?php echo site_url('akun') ?>" class="nav-link <?php echo $title=='Akun RT/RW' ? 'active':'' ?> ">
-                <i class="nav-icon fas fa-user-alt"></i>
-                <p>
-                  Akun RT/RW
-                </p>
-              </a>
-            </li>
-
             <li class="nav-header">SETTING</li>
 
             <li class="nav-item">
@@ -298,6 +283,8 @@
             </li>
 
             <?php elseif ($user['user_role']==2 || $user['user_role']==1):?>
+
+            <li class="nav-header">PENDUDUK</li>
 
               <li class="nav-item">
                 <a href="<?php echo site_url('home') ?>" class="nav-link <?php echo $title=='Dashboard' ? 'active':'' ?>">
