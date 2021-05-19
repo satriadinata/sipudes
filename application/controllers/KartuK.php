@@ -313,6 +313,7 @@ class KartuK extends CI_Controller {
 				'kode_pos_keluarga'=>$kode_pos,
 			]);
 		}
-		$this->db->update_batch('kartu_keluarga',$update, 'id_keluarga'); 
+		$this->db->update_batch('kartu_keluarga',$update, 'id_keluarga');
+		redirect(site_url('profil'));
 	}
 }
