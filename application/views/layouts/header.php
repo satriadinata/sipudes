@@ -326,6 +326,79 @@
                 </p>
               </a>
             </li>
+            <li class="nav-header">SURAT-SURAT</li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_domisili') ?>" class="nav-link <?php echo $title=='Surat Keterangan Domisili' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Domisili
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_usaha') ?>" class="nav-link <?php echo $title=='Surat Keterangan Usaha' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Usaha
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sktm_sekolah') ?>" class="nav-link <?php echo $title=='SKTM Sekolah' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SKTM Sekolah
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_merantau') ?>" class="nav-link <?php echo $title=='SK Perjalanan Merantau' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Perjalanan Merantau
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sp_pindah') ?>" class="nav-link <?php echo $title=='Surat Pengantar Pindah' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  Pengantar Pindah
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sktm_berobat') ?>" class="nav-link <?php echo $title=='SKTM Berobat' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SKTM Berobat
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('kematian') ?>" class="nav-link <?php echo $title=='Data Kematian' ? 'active':'' ?>">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  Surat Kematian
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_kelahiran') ?>" class="nav-link <?php echo $title=='Surat Keterangan Kelahiran' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Kelahiran
+                </p>
+              </a>
+            </li>
 
             <li class="nav-header">SETTING</li>
 
