@@ -32,6 +32,7 @@
               <button class="btn btn-success" data-toggle="modal" data-target="#modaledit">
                 Import Edit
               </button>
+              <a href="<?php echo site_url('warga/export') ?>" class="btn-primary">Export Excell</a>
             </div>
           </div>
           <!-- /.card-header -->
