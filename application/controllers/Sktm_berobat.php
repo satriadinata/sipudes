@@ -20,7 +20,7 @@ class Sktm_berobat extends CI_Controller {
 		$data['user'] = $this->session->userdata('user_logged');
 		if($this->session->userdata('user_logged')['user_role']==9){
 			echo "superadmin";
-		}elseif($this->session->userdata('user_logged')['user_role']==5){
+		}elseif($this->session->userdata('user_logged')['user_role']==5 || $this->session->userdata('user_logged')['user_role']==4){
 			$this->load->view('sktm_berobat/index',$data);
 		}
 	}
