@@ -509,4 +509,38 @@ $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
 exit;
 	}
+	public function reset()
+	{
+		$kode_desa = $this->session->userdata('user_logged')['kode_desa'];
+		$this->db->select('id_warga');
+		$this->db->from('warga');
+		$this->db->where('kode_desa', $kode_desa);
+		$data= $this->db->get()->result();
+		$hapus=[];
+		$anggota=[];
+		foreach ($data as $key => $value) {
+			array_push($hapus, $value->id_warga);
+			// $ang=$this->db->get_where('warga_has_kartu_keluarga',['id_keluarga'=>$value->id_keluarga])->result();
+			// array_push($anggota, $ang);
+		}
+		// echo "<pre>";
+		// // print_r($anggota);
+		// print_r($hapus);
+		// echo "</pre>";
+		// die();
+		$this->db->where_in('id_warga', $hapus);
+		$this->db->delete('warga');
+
+		// foreach ($anggota as $key => $value) {
+		// 	$modify=[];
+		// 	foreach ($value as $k => $v) {
+		// 		array_push($modify, $v->id);
+		// 	}
+		// 	$this->hapus_has($modify);
+		// }
+
+		
+		// $this->db->empty_table('warga_has_kartu_keluarga');
+		// $this->db->empty_table('kartu_keluarga');
+	}
 }
