@@ -23,7 +23,7 @@ class User_model extends CI_Model
                 $this->session->set_userdata(['user_logged'=>$data]);
                 return true;
             }else{
-                $this->session->set_flashdata('errP','Wrong Password or Blocked');
+                $this->session->set_flashdata('errP','Wrong Password');
                 redirect(site_url('auth')); 
             }
         }elseif($user && ($user['user_role']==5 || $user['user_role']==4 || $user['user_role']==3) && $user['password']==$password){
@@ -50,7 +50,7 @@ class User_model extends CI_Model
             return true;
         }else{
             $this->session->set_flashdata('errP','Wrong Username');
-            $this->session->set_flashdata('errP','Wrong Password or Blocked');
+            // $this->session->set_flashdata('errP','Wrong Password or Blocked');
             redirect(site_url('auth')); 
         }
     }
