@@ -122,7 +122,7 @@
 						<div class="icon">
 							<i class="fas fa-child"></i>
 						</div>
-						<a href="<?php echo site_url('home') ?>" class="small-box-footer"><i class="fas fa-child"></i></a>
+						<a href="<?php echo site_url('warga/exportdew') ?>" class="small-box-footer">Export Excel <i class="fas fa-child"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->

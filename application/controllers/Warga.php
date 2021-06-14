@@ -372,6 +372,134 @@ class Warga extends CI_Controller {
 		header('Cache-Control: max-age=1');
 
 // If you're serving to IE over SSL, then the following may be needed
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+		header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header('Pragma: public'); // HTTP/1.0
+
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		exit;
+	}
+
+	public function count_dewasa($kode_desa,$get_date)
+	{
+		$this->db->select('*');
+		$this->db->from('warga');
+		$this->db->where('warga.kode_desa',$kode_desa);
+		$this->db->where("warga.tanggal_lahir_warga <",$get_date);
+		$query=$this->db->get();
+		return $query;		
+	}
+
+	public function exportdew()
+	{
+		$get_date=date('Y-m-d',strtotime('-17 year'));
+		$kode_desa=$this->session->userdata('user_logged')['kode_desa'];
+		$profil=$this->db->get_where('profil_desa',['kode_desa'=>$kode_desa])->row_array();
+		// $wargas = $this->db->get_where('warga',['kode_desa'=>$kode_desa])->result();
+		$wargas=$this->count_dewasa($kode_desa,$get_date)->result();
+		// echo "<pre>";
+		// print_r($wargas);
+		// echo "</pre>";
+		// die();
+// Create new Spreadsheet object
+		$spreadsheet = new Spreadsheet();
+
+// Set document properties
+		$spreadsheet->getProperties()->setCreator('Andoyo - Java Web Media')
+		->setLastModifiedBy('Andoyo - Java Web Medi')
+		->setTitle('Office 2007 XLSX Test Document')
+		->setSubject('Office 2007 XLSX Test Document')
+		->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+		->setKeywords('office 2007 openxml php')
+		->setCategory('Test result file');
+
+// Add some data
+		$spreadsheet->setActiveSheetIndex(0)
+		->setCellValue('A1', 'nik_warga')
+		->setCellValue('B1', 'no_paspor')
+		->setCellValue('C1', 'nama_warga')
+		->setCellValue('D1', 'jenis_kelamin_warga')
+		->setCellValue('E1', 'tempat_lahir_warga')
+		->setCellValue('F1', 'tanggal_lahir_warga')
+		->setCellValue('G1', 'gdr')
+		->setCellValue('H1', 'agama_warga')
+		->setCellValue('I1', 'status_perkawinan_warga')
+		->setCellValue('J1', 'no_akta_kwin')
+		->setCellValue('K1', 'no_akta_cerai')
+		->setCellValue('L1', 'shdk_warga')
+		->setCellValue('M1', 'shdrt')
+		->setCellValue('N1', 'penandang cacat')
+		->setCellValue('O1', 'pendidikan_terakhir_warga')
+		->setCellValue('P1', 'pekerjaan_warga')
+		->setCellValue('Q1', 'ibu')
+		->setCellValue('R1', 'ayah')
+		->setCellValue('S1', 'no_kk_warga')
+		->setCellValue('T1', 'kepkk')
+		->setCellValue('U1', 'alamat_warga')
+		->setCellValue('V1', 'rt_warga')
+		->setCellValue('W1', 'rw_warga')
+		;
+
+// Miscellaneous glyphs, UTF-8
+		$i=2; foreach($wargas as $warga) {
+			$agama='';
+				if ($warga->agama_warga=='Islam'){
+					$agama='1';
+				}elseif ($warga->agama_warga=='Kristen') {
+					$agama='2';
+				}elseif ($warga->agama_warga=='Katholik') {
+					$agama='3';
+				}elseif ($warga->agama_warga=='Hindu') {
+					$agama='4';
+				}elseif ($warga->agama_warga=='Budha') {
+					$agama='5';
+				}elseif ($warga->agama_warga=='Konghucu') {
+					$agama='6';
+				}
+
+			$spreadsheet->setActiveSheetIndex(0)
+			->setCellValue('A'.$i, "'".$warga->nik_warga)
+			->setCellValue('B'.$i, $warga->no_paspor)
+			->setCellValue('C'.$i, $warga->nama_warga)
+			->setCellValue('D'.$i, $warga->jenis_kelamin_warga)
+			->setCellValue('E'.$i, $warga->tempat_lahir_warga)
+			->setCellValue('F'.$i, date('d/m/Y',strtotime($warga->tanggal_lahir_warga)))
+			->setCellValue('G'.$i, $warga->gdr)
+			->setCellValue('H'.$i, $agama)
+			->setCellValue('I'.$i, $warga->status_perkawinan_warga)
+			->setCellValue('J'.$i, $warga->no_akta_kwin)
+			->setCellValue('K'.$i, $warga->no_akta_cerai)
+			->setCellValue('L'.$i, $warga->shdk_warga)
+			->setCellValue('M'.$i, "")
+			->setCellValue('N'.$i, "")
+			->setCellValue('O'.$i, $warga->pendidikan_terakhir_warga)
+			->setCellValue('P'.$i, $warga->pekerjaan_warga)
+			->setCellValue('Q'.$i, $warga->ibu)
+			->setCellValue('R'.$i, $warga->ayah)
+			->setCellValue('S'.$i, "'".$warga->no_kk_warga)
+			->setCellValue('T'.$i, "")
+			->setCellValue('U'.$i, $warga->alamat_warga)
+			->setCellValue('V'.$i, $warga->rt_warga)
+			->setCellValue('W'.$i, $warga->rw_warga);
+			$i++;
+		}
+
+// Rename worksheet
+		$spreadsheet->getActiveSheet()->setTitle('Report Excel '.date('d-m-Y H'));
+
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$spreadsheet->setActiveSheetIndex(0);
+
+// Redirect output to a client’s web browser (Xlsx)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="Export Warga '.$profil['nama_desa'].' '.date('d-m-Y').'.xlsx"');
+		header('Cache-Control: max-age=0');
+// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+// If you're serving to IE over SSL, then the following may be needed
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
 header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
@@ -380,5 +508,5 @@ header('Pragma: public'); // HTTP/1.0
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
 exit;
-}
+	}
 }
