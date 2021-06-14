@@ -138,7 +138,7 @@
 
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2"  style="margin-bottom: 100px;">
+        <nav class="mt-2"  style="padding-bottom: 100px;">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
            <?php if ($user['user_role']==5):?>
