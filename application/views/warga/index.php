@@ -29,6 +29,9 @@
               <button class="btn btn-success" data-toggle="modal" data-target="#modalImport">
                 Import
               </button>
+              <button class="btn btn-success" data-toggle="modal" data-target="#modaledit">
+                Import Edit
+              </button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -108,6 +111,37 @@
       </div>
       <div class="modal-body">
         <form enctype="multipart/form-data" method="post" action="<?= site_url('warga/import') ;?>">
+
+          <div class="form-group">
+            <label>Pilih File</label>
+            <input type="file" name="file" required="" class="form-control">
+          </div>
+
+          <hr>
+          <div class="text-right">
+            <button class="btn btn-success">Import</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaledit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Import Edit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" method="post" action="<?= site_url('warga/importedit') ;?>">
 
           <div class="form-group">
             <label>Pilih File</label>

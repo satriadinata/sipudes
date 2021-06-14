@@ -22,22 +22,25 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header" style="vertical-align: middle;">
-            <h3 class="card-title" style="line-height: 40px;" >Data Surat Keterangan Domisili</h3>
+            <h3 class="card-title" style="line-height: 40px;" >Data Kematian</h3>
 
             <div class="card-tools" style="" >
-              <a href="<?php echo site_url('sk_domisili/add') ?>" class="btn btn-primary">Tambah Data</a>
+              <a href="<?php echo site_url('kematian/add') ?>" class="btn btn-primary">Tambah Data</a>
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive">
             <table id="tableDaftar" class="table table-hover text-nowrap">
               <thead>
-                <th>Nomor Surat</th>
+                <th>No. Surat</th>
                 <th>NIK</th>
-                <th>Nama</th>
-                <th>Alamat KTP</th>
-                <th>Dibuat tanggal</th>
-                <th>Actions</th>
+                <th>Nama Almarhum</th>
+                <th>Tanggal Lahir</th>
+                <th>Tanggal Kematian</th>
+                <th>Anak ke</th>
+                <th>Nama Ayah</th>
+                <th>Nama Ibu</th>
+                <th>Detail</th>
               </thead>
             </table>
           </div>
@@ -131,7 +134,7 @@
   $(document).ready(function() {
     tabel=$('#tableDaftar').DataTable({
       "ajax": {
-        url : "<?php echo site_url("sk_domisili/getAll")?>",
+        url : "<?php echo site_url("kematian/getAll")?>",
         type : 'GET'
       }
     });
@@ -169,7 +172,7 @@
         id:id,
       };
       $.ajax({
-        url: "<?php echo site_url('sk_domisili/hapus') ?>",
+        url: "<?php echo site_url('kematian/hapus') ?>",
         type:'post',
         data:data,
         beforeSend:function(){

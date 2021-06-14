@@ -13,7 +13,7 @@
 		<?php echo base_url(''); ?>
 		<?php print_r($calon) ?>
 	</pre> -->
-	<div class="head" style="margin-top: -20px;" >
+	<div class="head">
 		<div style="position: relative;" ></div>
 		<div style="position: absolute;right: 10;top: -30;"  >
 			<table>
@@ -33,103 +33,72 @@
 				</td>
 			</tr>
 		</table>
-		<hr style="margin-top: -20px;" >
-		<div style="text-align: left;margin-top: -10px;" >
+		<hr>
+		<div style="text-align: left;" >
 			
 			<p>No. Kode Desa <?php echo $profil['nama_desa']; ?><br>
 				<?php echo $profil['kode_desa']; ?>
 			</p>
 		</div>
 
-		<h3 style="text-decoration: underline;margin-top: -10px;" >SURAT KETERANGAN KELAHIRAN
+		<h3 style="text-decoration: underline;" >SURAT KETERANGAN KEMATIAN
 		</h3>
-		<p style="margin-top: -20px;" >Nomor: <?php echo $surat['nomor_surat']; ?></p>
-		<div style="text-align: justify;margin-bottom: -20px;">
-			<p>Yang bertanda tangan dibawah ini, menerangkan bahwa pada:</p>
+		<P>Nomor: <?php echo $surat['no_surat']; ?></P>
+		<div style="text-align: justify;">
+			<p>Yang bertanda tangan dibawah ini, menerangkan bahwa:</p>
 		</div>
 	</div>
 	<div class="body">
 		<table>
 			<tr>
+				<td>Nama Lengkap</td>
+				<td> : </td>
+				<td><?php echo $calon['nama_warga']; ?></td>
+			</tr>
+			<tr>
+				<td>NIK</td>
+				<td> : </td>
+				<td><?php echo $calon['nik_warga']; ?></td>
+			</tr>
+			<tr>
+				<td>Jenis Kelamin</td>
+				<td> : </td>
+				<td><?php echo $calon['jenis_kelamin_warga']=='L' ? 'Laki-laki' :'Perempuan' ?></td>
+			</tr>
+			<tr>
+				<td>Tanggal Lahir/Umur</td>
+				<td> : </td>
+				<td><?php echo $umur?></td>
+			</tr>
+			<tr>
+				<td>Agama</td>
+				<td> : </td>
+				<td><?php echo strtoupper($calon['agama_warga']); ?></td>
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td> : </td>
+				<td><?php echo 'DESA '.$profil['nama_desa'].' RT '.$calon['rt_warga'].' RW '.$calon['rw_warga'].' KECAMATAN '.$profil['kec_desa'].' PROVINSI '.$profil['prov_desa'] ?></td>
+			</tr>
+		</table>
+		<p>
+			Telah meninggal Dunia pada:
+		</p>
+		<table>
+			<tr>
 				<td>Hari</td>
 				<td> : </td>
-				<td><?php echo $surat['hari']; ?></td>
+				<td><?php echo $surat['hari']; ?>, <?php echo date('d-m-Y',strtotime($surat['tgl_kematian']))  ?></td>
 			</tr>
 			<tr>
-				<td>Tanggal</td>
+				<td>Bertempat di</td>
 				<td> : </td>
-				<td><?php echo $surat['tgl_lahir']; ?></td>
+				<td><?php echo $surat['tempat']; ?></td>
 			</tr>
 			<tr>
-				<td>Pukul</td>
+				<td>Penyebab</td>
 				<td> : </td>
-				<td><?php echo $surat['pukul']; ?></td>
-			</tr>
-			<tr>
-				<td>Tempat Kelahiran</td>
-				<td> : </td>
-				<td><?php echo $surat['tempat_lahir']; ?></td>
-			</tr>
-		</table>
-		<p>
-			Telah lahir seorang anak <?php echo $surat['jenis_kelamin']=='L' ? 'Laki-laki' :'Perempuan' ?> bernama: <span style="font-weight: bold;" ><?php echo $surat['nama']; ?></span>
-		</p>
-		<p style="font-weight: bold;" >Dari seorang ibu: </p>
-		<table>
-			<tr>
-				<td>Nama lengkap</td>
-				<td> : </td>
-				<td><?php echo $ibu['nama_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>NIK</td>
-				<td> : </td>
-				<td><?php echo $ibu['nik_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>Umur</td>
-				<td> : </td>
-				<td><?php echo $umur_ibu; ?></td>
-			</tr>
-			<tr>
-				<td>Pekerjaan</td>
-				<td> : </td>
-				<td><?php echo $ibu['pekerjaan_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>Alamat</td>
-				<td> : </td>
-				<td><?php echo 'DESA '.$profil['nama_desa'].' RT '.$ibu['rt_warga'].' RW '.$ibu['rw_warga'] ?></td>
-			</tr>
-		</table>
-		<p>
-			<span style="font-weight: bold;" >Istri dari: </span>
-		</p>
-		<table>
-			<tr>
-				<td>Nama lengkap</td>
-				<td> : </td>
-				<td><?php echo $ayah['nama_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>NIK</td>
-				<td> : </td>
-				<td><?php echo $ayah['nik_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>Umur</td>
-				<td> : </td>
-				<td><?php echo $umur_ayah; ?></td>
-			</tr>
-			<tr>
-				<td>Pekerjaan</td>
-				<td> : </td>
-				<td><?php echo $ayah['pekerjaan_warga']; ?></td>
-			</tr>
-			<tr>
-				<td>Alamat</td>
-				<td> : </td>
-				<td><?php echo 'DESA '.$profil['nama_desa'].' RT '.$ayah['rt_warga'].' RW '.$ayah['rw_warga'] ?></td>
+				<td><?php echo $surat['penyebab']; ?></td>
 			</tr>
 		</table>
 		<p>
@@ -159,10 +128,10 @@
 			<tr>
 				<td>Alamat</td>
 				<td> : </td>
-				<td><?php echo 'DESA '.$profil['nama_desa'].' RT '.$pelapor['rt_warga'].' RW '.$pelapor['rw_warga']?></td>
+				<td><?php echo 'DESA '.$profil['nama_desa'].' RT '.$pelapor['rt_warga'].' RW '.$pelapor['rw_warga'].' KECAMATAN '.$profil['kec_desa'].' PROVINSI '.$profil['prov_desa'] ?></td>
 			</tr>
 			<tr>
-				<td>Hubungan pelapor dengan bayi</td>
+				<td>Hubungan pelapor dengan yang mati</td>
 				<td> : </td>
 				<td><?php echo $surat['hubungan_pelapor'] ?></td>
 			</tr>
@@ -177,8 +146,9 @@
 			<table>
 				<tr>
 					<td>
-						<p style="margin-bottom: -5px;" ><?php echo $profil['nama_desa']; ?>, <?php echo date('d').' '.$bulan[date('m')-1].' '.date('Y'); ?></p>
+						<p><?php echo $profil['nama_desa']; ?>, <?php echo date('d').' '.$bulan[date('m')-1].' '.date('Y'); ?></p>
 						<p>Kepala Desa <?php echo $profil['nama_desa']; ?></p>
+						<br>
 						<br>
 						<br>
 					</td>

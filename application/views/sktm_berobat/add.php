@@ -25,11 +25,11 @@
       <div class="col-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Tambah Surat Keterangan Domisili</h3>
+            <h3 class="card-title">Tambah Surat Pengantar Pindah Antar Kabupaten atau Provinsi</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="<?php echo site_url('sk_domisili/post') ?>" >
+          <form method="post" action="<?php echo site_url('sktm_berobat/post') ?>" >
             <div class="card-body">
               <?php if ($this->session->flashdata('error')!=null):?>
                 <div class="alert alert-danger">
@@ -37,42 +37,23 @@
                 </div>
               <?php endif; ?>
               <div class="form-group">
-                <label for="nomor_surat">Nomor Surat</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['nomor_surat'] :'' ?>" id="nomor_surat" placeholder="Masukkan Nomor Surat" name="nomor_surat" >
+                <label for="no_surat">Nomor Surat</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['no_surat'] :'' ?>" id="no_surat" placeholder="Masukkan Nomor Surat" name="no_surat" >
               </div>
 
               <div class="form-group">
-                <label for="id_warga">NIK - Nama Warga</label>
+                <label for="id_warga">Kepala Keluarga</label>
                 <select class="form-control" name="id_warga">
                   <?php foreach ($warga as $value):?>
-                    <option  value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                    <option value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
                   <?php endforeach ?>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="surat_bukti_diri">Surat Bukti Diri</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['surat_bukti_diri'] :'' ?>" id="surat_bukti_diri" placeholder="Masukkan Surat Bukti Diri" name="surat_bukti_diri" >
+                <label for="ket_bawah">Keterangan Bawah Surat</label>
+               <textarea name="ket_bawah" class="form-control" id="ket_bawah">Adalah benar-benar masyarakat tidak mampu/miskin, dan anaknya FITRIA NUR AZZAHRA dalam  kondisi sakit membutuhkan pelayanan kesehatan di Rumah Sakit "KARIADI" Semarang Jawa Tengah.</textarea>
               </div>
-
-              <div class="form-group">
-                <label for="keperluan">Keperluan</label>
-                <textarea class="form-control" name="keperluan" id="keperluan" ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="keterangan_lain">Keterangan Lain</label>
-                <textarea class="form-control" name="keterangan_lain" id="keterangan_lain" ></textarea>
-              </div>
-
-
-           <!--    <br>
-              <br>
-              <h6>Data Detail</h6>
-              <hr>
-              <div id="res" class="card">
-                
-              </div> -->
               <!-- /.card-body -->
 
               <div class="card-footer">
@@ -91,16 +72,6 @@
         sortField: 'text'
       });
     });
-    function dt(id){
-      $.ajax({
-      url: "<?php echo site_url('sk_domisili/dt') ?>",
-      type:'post',
-      data:{id:id},
-      success: function(result){
-        $("#res").html(result);
-      }
-    });
-    }
   </script>
   <!-- /.content -->
   <?php $this->load->view('layouts/footer.php') ?>

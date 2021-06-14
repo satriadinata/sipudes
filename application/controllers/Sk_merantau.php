@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-class Sk_domisili extends CI_Controller {
+class Sk_merantau extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -16,30 +16,29 @@ class Sk_domisili extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['title']='Surat Keterangan Domisili';
+		$data['title']='SK Perjalanan Merantau';
 		$data['user'] = $this->session->userdata('user_logged');
 		if($this->session->userdata('user_logged')['user_role']==9){
 			echo "superadmin";
 		}elseif($this->session->userdata('user_logged')['user_role']==5){
-			$this->load->view('sk_dom/index',$data);
+			$this->load->view('sk_merantau/index',$data);
 		}
 	}
 	public function add()
 	{
-		$data['title']='Surat Keterangan Domisili';
+		$data['title']='SK Perjalanan Merantau';
 		$data['user'] = $this->session->userdata('user_logged');
 		$data['warga'] = $this->db->get_where('warga',['kode_desa'=>$data['user']["kode_desa"]])->result();
-		$this->load->view('sk_dom/add',$data);
+		$this->load->view('sk_merantau/add',$data);
 	}
 	public function post()
 	{
 		$data=$this->input->post();
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
 		$data['created_at']=date('Y-m-d H:i:s');
-		$data['updated_at']=date('Y-m-d H:i:s');
-		$this->db->insert('sk_domisili', $data);
+		$this->db->insert('sk_merantau', $data);
 		$this->session->set_flashdata('message', 'Data berhasil di input');
-		redirect(site_url('sk_domisili'));
+		redirect(site_url('sk_merantau'));
 	}
 	public function getAll()
 	{
@@ -50,19 +49,18 @@ class Sk_domisili extends CI_Controller {
 		$length = intval($this->input->get("length"));
 
 
-		$wargas = $this->Sk_domisili_model->get_data($kode_desa);
+		$wargas = $this->Sk_domisili_model->sk_merantau($kode_desa);
 
 		$data = array();
 
 		foreach($wargas->result() as $r) {
 
 			$data[] = array(
-				$r->nomor_surat,
-				$r->nik_warga,
+				$r->no_surat,
 				$r->nama_warga,
-				$r->alamat_ktp_warga,
+				$r->keperluan,
 				$r->created_at,
-				"<a target='_blank' href='".site_url('sk_domisili/cetak/').$r->id."' class='btn btn-success'>Cetak</a> ".
+				"<a target='_blank' href='".site_url('sk_merantau/cetak/').$r->id."' class='btn btn-success'>Cetak</a> ".
 				"<button id='hps".$r->id."' class='btn btn-danger' onclick='hapus($r->id)'>Hapus</button>",
 			);
 		}
@@ -109,7 +107,7 @@ class Sk_domisili extends CI_Controller {
 	public function hapus()
 	{
 		$id=$this->input->post('id');
-		$this->db->delete('sk_domisili', ['id'=>$id]);
+		$this->db->delete('sk_merantau', ['id'=>$id]);
 	}
 	public function dt()
 	{
@@ -120,14 +118,14 @@ class Sk_domisili extends CI_Controller {
 	public function cetak($id)
 	{
 		$this->load->library('pdf');
-		$data['surat']=$this->db->get_where('sk_domisili',['id'=>$id])->row_array();
+		$data['surat']=$this->db->get_where('sk_merantau',['id'=>$id])->row_array();
 		$data['calon']=$this->db->get_where('warga',['id_warga'=>$data['surat']['id_warga']])->row_array();
 		$data['kode_desa']=$this->session->userdata('user_logged')['kode_desa'];
 		$data['profil']=$this->db->get_where('profil_desa',['kode_desa'=>$data['kode_desa']])->row_array();
 		$data['kepdes']=$this->db->get_where('warga',['id_warga'=>$data['profil']['kepala_desa']])->row_array();
 		// $this->load->view('CetakPendaftaran',$data);
 		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "sk_domisili".$data['calon']['nik_warga'].".pdf";
-		$this->pdf->load_view('sk_dom/cetak', $data);
+		$this->pdf->filename = "sk_merantau".$data['calon']['nik_warga'].".pdf";
+		$this->pdf->load_view('sk_merantau/cetak', $data);
 	}
 }

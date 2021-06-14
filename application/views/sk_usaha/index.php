@@ -22,10 +22,10 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header" style="vertical-align: middle;">
-            <h3 class="card-title" style="line-height: 40px;" >Data Surat Keterangan Kelahiran</h3>
+            <h3 class="card-title" style="line-height: 40px;" >Data Surat Keterangan Usaha</h3>
 
             <div class="card-tools" style="" >
-              <a href="<?php echo site_url('sk_kelahiran/add') ?>" class="btn btn-primary">Tambah Data</a>
+              <a href="<?php echo site_url('sk_usaha/add') ?>" class="btn btn-primary">Tambah Data</a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -33,10 +33,10 @@
             <table id="tableDaftar" class="table table-hover text-nowrap">
               <thead>
                 <th>Nomor Surat</th>
+                <th>NIK</th>
                 <th>Nama</th>
-                <th>Ayah Kandung</th>
-                <th>Ibu Kandung</th>
-                <th>Tanggal Lahir</th>
+                <th>Alamat KTP</th>
+                <th>Dibuat tanggal</th>
                 <th>Actions</th>
               </thead>
             </table>
@@ -52,55 +52,13 @@
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-<!-- modal -->
-<div class="modal fade" id="modal-edit">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Edit</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modalDataEdit">
-        <!-- <p>One fine body&hellip;</p> -->
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="modal-det">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Detail</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modaldet">
-        <!-- <p>One fine body&hellip;</p> -->
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
 
 <script>
   var tabel=null;
   $(document).ready(function() {
     tabel=$('#tableDaftar').DataTable({
       "ajax": {
-        url : "<?php echo site_url("sk_kelahiran/getAll")?>",
+        url : "<?php echo site_url("sk_usaha/getAll")?>",
         type : 'GET'
       }
     });
@@ -110,7 +68,7 @@
       id:id,
     }
     $.ajax({
-      url: "<?php echo site_url('sk_kelahiran/edit') ?>",
+      url: "<?php echo site_url('warga/edit') ?>",
       type:'post',
       data:data,
       success: function(result){
@@ -138,7 +96,7 @@
         id:id,
       };
       $.ajax({
-        url: "<?php echo site_url('sk_kelahiran/hapus') ?>",
+        url: "<?php echo site_url('sk_usaha/hapus') ?>",
         type:'post',
         data:data,
         beforeSend:function(){

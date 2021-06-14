@@ -100,7 +100,7 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4"  >
       <!-- Brand Logo -->
       <a style="text-align: center;" href="<?php echo site_url('home') ?>" class="brand-link">
         <!-- <img src="<?php echo base_url('assets/logo.jpg') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
@@ -138,7 +138,7 @@
 
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2"  style="margin-bottom: 100px;">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
            <?php if ($user['user_role']==5):?>
@@ -173,6 +173,8 @@
               </a>
             </li>
 
+            
+
           <!--   <li class="nav-item">
               <a href="<?php echo site_url('nikah') ?>" class="nav-link <?php echo $title=='Surat Nikah' ? 'active':'' ?> ">
                 <i class="nav-icon fas fa-table"></i>
@@ -188,6 +190,60 @@
                 <i class="nav-icon far fa-envelope"></i>
                 <p>
                   SK Domisili
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_usaha') ?>" class="nav-link <?php echo $title=='Surat Keterangan Usaha' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Usaha
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sktm_sekolah') ?>" class="nav-link <?php echo $title=='SKTM Sekolah' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SKTM Sekolah
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sk_merantau') ?>" class="nav-link <?php echo $title=='SK Perjalanan Merantau' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SK Perjalanan Merantau
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sp_pindah') ?>" class="nav-link <?php echo $title=='Surat Pengantar Pindah' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  Pengantar Pindah
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('sktm_berobat') ?>" class="nav-link <?php echo $title=='SKTM Berobat' ? 'active':'' ?> ">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  SKTM Berobat
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo site_url('kematian') ?>" class="nav-link <?php echo $title=='Data Kematian' ? 'active':'' ?>">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                  Surat Kematian
                 </p>
               </a>
             </li>

@@ -1,4 +1,7 @@
 <?php $this->load->view('layouts/header.php') ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <!-- Main content -->
 <div class="content-header">
   <div class="container-fluid">
@@ -49,8 +52,18 @@
               </div>
 
               <div class="form-group">
+                <label for="hari">Hari</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['hari'] :'' ?>" id="hari" placeholder="Masukkan Hari Lahir" name="hari" >
+              </div>
+
+              <div class="form-group">
                 <label for="tgl_lahir">Tanggal Lahir</label>
                 <input type="date" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['tgl_lahir'] :'' ?>" id="tgl_lahir" placeholder="Masukkan Tanggal Lahir" name="tgl_lahir" >
+              </div>
+
+              <div class="form-group">
+                <label for="pukul">Waktu Lahir</label>
+                <input type="time" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['pukul'] :'' ?>" id="pukul" placeholder="Masukkan Waktu Lahir" name="pukul" >
               </div>
 
               <div class="form-group">
@@ -61,20 +74,39 @@
                 </select>
               </div>
 
-              <div class="form-group">
+               <div class="form-group">
                 <label for="ayah_kandung">Ayah Kandung</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['ayah_kandung'] :'' ?>" id="ayah_kandung" placeholder="Masukkan Ayah Kandung" name="ayah_kandung" >
+                <select class="form-control" name="ayah_kandung">
+                  <?php foreach ($warga as $value):?>
+                    <option value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
 
-              <div class="form-group">
+               <div class="form-group">
                 <label for="ibu_kandung">Ibu Kandung</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['ibu_kandung'] :'' ?>" id="ibu_kandung" placeholder="Masukkan Ibu Kandung" name="ibu_kandung" >
+                <select class="form-control" name="ibu_kandung">
+                  <?php foreach ($warga as $value):?>
+                    <option value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
 
               <div class="form-group">
-                <label for="anak_ke">Anak Ke</label>
-                <input type="number" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['anak_ke'] :'' ?>" id="anak_ke" placeholder="Masukkan Anak ke" name="anak_ke" >
+                <label for="pelapor">Pelapor</label>
+                <select class="form-control" name="pelapor">
+                  <?php foreach ($warga as $value):?>
+                    <option value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
+
+               <div class="form-group">
+                <label for="hubungan_pelapor">Hubungan Pelapor dengan Bayi</label>
+                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['hubungan_pelapor'] :'' ?>" id="hubungan_pelapor" placeholder="Masukkan Hubungan Pelapor dengan Bayi" name="hubungan_pelapor" >
+              </div>
+
+
               <!-- /.card-body -->
 
               <div class="card-footer">
@@ -87,5 +119,12 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  <script>
+    $(document).ready(function () {
+      $('select').selectize({
+        sortField: 'text'
+      });
+    });
+  </script>
   <!-- /.content -->
   <?php $this->load->view('layouts/footer.php') ?>

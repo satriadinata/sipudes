@@ -275,6 +275,7 @@ class KartuK extends CI_Controller {
 
 		
 		// $this->db->empty_table('warga_has_kartu_keluarga');
+		// $this->db->empty_table('kartu_keluarga');
 	}
 	public function sync()
 	{

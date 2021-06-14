@@ -29,7 +29,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Login</p>
 
-        <form action="<?php echo site_url('auth/login') ?>" method="post">
+        <form action="<?php echo site_url('auth/login') ?>" method="post" autocomplete="on" >
 
           <?php if($this->session->flashdata('errP')): ?>
             <div class="alert alert-danger"><?= $this->session->flashdata('errP') ;?></div>
@@ -53,7 +53,7 @@
           </div>
 
           <div class="input-group mb-3">
-            <input type="text" name="kode_desa" class="form-control" placeholder="Kode Desa">
+            <input type="text" name="kode_desa" id="kode_desa" class="form-control" placeholder="Kode Desa">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-home"></span>
@@ -107,6 +107,20 @@
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
+<script>
+  $('#kode_desa').keyup(function(event) {
 
+  // skip for arrow keys
+  if(event.which >= 37 && event.which <= 40) return;
+
+  // format number
+  $(this).val(function(index, value) {
+    return value
+    .replace(/\D/g, "")
+    .replace(/\B(?=(\d{2})+(?!\d))/g, ".")
+    ;
+  });
+});
+</script>
 </body>
 </html>

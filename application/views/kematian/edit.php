@@ -25,54 +25,71 @@
       <div class="col-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Tambah Surat Keterangan Domisili</h3>
+            <h3 class="card-title">Edit Data Kematian</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="<?php echo site_url('sk_domisili/post') ?>" >
+          <form method="post" action="<?php echo site_url('kematian/update') ?>" >
+            <input type="hidden" name="id_kematian" value="<?php echo $calon['id_kematian'] ?>">
             <div class="card-body">
               <?php if ($this->session->flashdata('error')!=null):?>
                 <div class="alert alert-danger">
                   <?php print_r($this->session->flashdata('error')); ?>
                 </div>
               <?php endif; ?>
+
               <div class="form-group">
-                <label for="nomor_surat">Nomor Surat</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['nomor_surat'] :'' ?>" id="nomor_surat" placeholder="Masukkan Nomor Surat" name="nomor_surat" >
+                <label for="no_surat">Nomor Surat</label>
+                <input type="text" class="form-control" value="<?php echo $calon['no_surat']?>" id="no_surat" placeholder="Masukkan Nomor Surat" name="no_surat" >
               </div>
 
               <div class="form-group">
                 <label for="id_warga">NIK - Nama Warga</label>
                 <select class="form-control" name="id_warga">
                   <?php foreach ($warga as $value):?>
-                    <option  value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                    <option <?php if ($calon['id_warga']==$value->id_warga) {echo "selected";} ?> value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
                   <?php endforeach ?>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="surat_bukti_diri">Surat Bukti Diri</label>
-                <input type="text" class="form-control" value="<?php echo $this->session->flashdata('input') ? $this->session->flashdata('input')['surat_bukti_diri'] :'' ?>" id="surat_bukti_diri" placeholder="Masukkan Surat Bukti Diri" name="surat_bukti_diri" >
+                <label for="tempat">Tempat</label>
+                <input type="text" class="form-control" value="<?php echo $calon['tempat'] ?>" id="tempat" placeholder="Masukkan Tempat" name="tempat" >
               </div>
 
               <div class="form-group">
-                <label for="keperluan">Keperluan</label>
-                <textarea class="form-control" name="keperluan" id="keperluan" ></textarea>
+                <label for="hari">Hari</label>
+                <input type="text" class="form-control" value="<?php echo $calon['hari'] ?>" id="hari" placeholder="Masukkan Hari" name="hari" >
               </div>
 
               <div class="form-group">
-                <label for="keterangan_lain">Keterangan Lain</label>
-                <textarea class="form-control" name="keterangan_lain" id="keterangan_lain" ></textarea>
+                <label for="tgl_kematian">Tanggal Kematian</label>
+                <input type="date" class="form-control" value="<?php echo $calon['tgl_kematian']?>" id="tgl_kematian" placeholder="Masukkan Tanggal Kematian" name="tgl_kematian" >
               </div>
 
+              <div class="form-group">
+                <label for="anak_ke">Anak-ke</label>
+                <input type="number" class="form-control" value="<?php echo $calon['anak_ke'] ?>" id="anak_ke" placeholder="Masukkan Anak-ke" name="anak_ke" >
+              </div>
 
-           <!--    <br>
-              <br>
-              <h6>Data Detail</h6>
-              <hr>
-              <div id="res" class="card">
-                
-              </div> -->
+              <div class="form-group">
+                <label for="pelapor">NIK - Nama Pelapor</label>
+                <select class="form-control" name="pelapor">
+                  <?php foreach ($warga as $value):?>
+                    <option <?php if ($calon['pelapor']==$value->id_warga) {echo "selected";} ?> value="<?php echo $value->id_warga ?>" ><?php echo $value->nik_warga.'-'.$value->nama_warga; ?></option>
+                  <?php endforeach ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="penyebab">Penyebab</label>
+                <input type="text" class="form-control" value="<?php echo $calon['penyebab'] ?>" id="penyebab" placeholder="Masukkan Penyebab" name="penyebab" >
+              </div>
+
+              <div class="form-group">
+                <label for="hubungan_pelapor">Hubungan dengan Pelapor</label>
+                <input type="text" class="form-control" value="<?php echo $calon['hubungan_pelapor'] ?>" id="hubungan_pelapor" placeholder="Masukkan Hubungan dengan Pelapor" name="hubungan_pelapor" >
+              </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
@@ -91,16 +108,6 @@
         sortField: 'text'
       });
     });
-    function dt(id){
-      $.ajax({
-      url: "<?php echo site_url('sk_domisili/dt') ?>",
-      type:'post',
-      data:{id:id},
-      success: function(result){
-        $("#res").html(result);
-      }
-    });
-    }
   </script>
   <!-- /.content -->
   <?php $this->load->view('layouts/footer.php') ?>
